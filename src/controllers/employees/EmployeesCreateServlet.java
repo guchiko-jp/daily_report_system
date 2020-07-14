@@ -17,7 +17,6 @@ import models.validators.EmployeeValidator;
 import utils.DBUtil;
 import utils.EncryptUtil;
 
-// くりえいとさーぶれっと
 /**
  * Servlet implementation class EmployeesCreateServlet
  */
