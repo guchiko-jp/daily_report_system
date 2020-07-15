@@ -145,7 +145,7 @@ table#report_list .report_name {
 }
 
 table#report_list .report_date {
-    width: 20%;
+    width: 10%;
 }
 
 table#report_list .report_title {
@@ -154,6 +154,10 @@ table#report_list .report_title {
 
 table#report_list .report_action {
     width: 13%;
+}
+
+table#report_list .report_like {
+    width: 10%;
 }
 
 pre {
