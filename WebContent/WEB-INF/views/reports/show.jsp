@@ -50,7 +50,7 @@
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
-        <p>この日報に いいね する</p>
+        <p><a href='<c:url value='/reports/like?id=${report.id}' />'>この日報にいいねする</a></p>
         <p><a href="<c:url value='/reports/index' />">一覧に戻る</a></p>
     </c:param>
 </c:import>
