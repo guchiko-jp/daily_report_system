@@ -61,7 +61,7 @@ public class Report {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
-    @Column(name = "like_count", nullable = false)
+    @Column(name = "like_count")
     private Integer like_count;
 
     public Integer getId() {
