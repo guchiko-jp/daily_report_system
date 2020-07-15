@@ -39,6 +39,7 @@ public class ReportsLikeServlet extends HttpServlet {
 
         em.getTransaction().begin();
         em.getTransaction().commit();
+        request.getSession().setAttribute("flush", "いいねしました。");
         em.close();
 
         response.sendRedirect(request.getContextPath() + "/reports/show?id=" + r.getId());
