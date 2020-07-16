@@ -10,7 +10,7 @@
         </c:if>
         <c:if test="${hasError}">
             <div id="flush_error">
-                自分の日報にいいねすることはできません。
+                エラーが発生しました。
             </div>
         </c:if>
         <c:choose>
@@ -47,7 +47,7 @@
                         </tr>
                         <tr>
                             <th>いいね数</th>
-                            <td><c:out value="${report.like_count}" /></td>
+                            <td><c:out value="${report.likedByList.size()}" /></td>
                         </tr>
                     </tbody>
                 </table>
@@ -57,7 +57,14 @@
                         <p><a href="<c:url value='/reports/edit?id=${report.id}' />">この日報を編集する</a></p>
                     </c:when>
                     <c:otherwise>
-                        <p><a href='<c:url value='/reports/like?id=${report.id}' />'>この日報にいいねする</a></p>
+                        <c:choose>
+                            <c:when test="${likedFlag}">
+                                <p class="weak">（既にいいねしています。）</p>
+                            </c:when>
+                            <c:otherwise>
+                                <p><a href='<c:url value='/reports/like?id=${report.id}' />'>この日報にいいねする</a></p>
+                            </c:otherwise>
+                        </c:choose>
                     </c:otherwise>
                 </c:choose>
             </c:when>

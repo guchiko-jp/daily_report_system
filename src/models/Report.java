@@ -2,14 +2,18 @@ package models;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -61,8 +65,9 @@ public class Report {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
-    @Column(name = "like_count")
-    private Integer like_count;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "report_id")
+    private Collection<Employee> likedByList = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -120,11 +125,12 @@ public class Report {
         this.updated_at = updated_at;
     }
 
-    public Integer getLike_count() {
-        return like_count;
+    public Collection<Employee> getLikedByList() {
+        return likedByList;
     }
 
-    public void setLike_count(Integer like_count) {
-        this.like_count = like_count;
+    public void setLikedByList(Collection<Employee> likedByList) {
+        this.likedByList =  likedByList;
     }
+
 }

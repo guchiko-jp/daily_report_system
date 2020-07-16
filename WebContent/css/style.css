@@ -167,3 +167,7 @@ pre {
 h3 {
     font-size: larger;
 }
+
+.weak {
+    color: #bab9bb;
+}

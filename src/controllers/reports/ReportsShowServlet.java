@@ -1,6 +1,7 @@
 package controllers.reports;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Employee;
 import models.Report;
 import utils.DBUtil;
 
@@ -37,6 +39,13 @@ public class ReportsShowServlet extends HttpServlet {
         Report r =em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
+
+        request.setAttribute("likedFlag", false);
+        for(Iterator<Employee> it = r.getLikedByList().iterator(); it.hasNext();) {
+            if(it.next().getId() == ((Employee)request.getSession().getAttribute("login_employee")).getId()) {
+                request.setAttribute("likedFlag", true);
+            }
+        }
 
         request.setAttribute("report", r);
         request.setAttribute("_token", request.getSession().getId());

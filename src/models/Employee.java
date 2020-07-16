@@ -122,5 +122,4 @@ public class Employee {
         this.delete_flag = delete_flag;
     }
 
-
 }
