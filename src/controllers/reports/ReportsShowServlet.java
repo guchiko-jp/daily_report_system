@@ -45,6 +45,10 @@ public class ReportsShowServlet extends HttpServlet {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }
+        if(request.getSession().getAttribute("hasError") != null) {
+            request.setAttribute("hasError", request.getSession().getAttribute("hasError"));
+            request.getSession().removeAttribute("hasError");
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/show.jsp");
         rd.forward(request, response);
