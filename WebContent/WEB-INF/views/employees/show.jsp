@@ -3,6 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
+        <c:if test="${flush != null}">
+            <div id="flush_success">
+                <c:out value="${flush}"></c:out>
+            </div>
+        </c:if>
         <c:choose>
             <c:when test="${employee != null }">
                 <h2>id : ${employee.id} の従業員情報 詳細ページ</h2>
@@ -47,7 +52,14 @@
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
-
+        <c:choose>
+            <c:when test="${!followedFlag}">
+                <p><a href="<c:url value='/employees/follow?id=${employee.id}' /> ">この従業員をフォローする</a></p>
+            </c:when>
+            <c:otherwise>
+                <p class="weak">（フォロー済）</p>
+            </c:otherwise>
+        </c:choose>
         <p><a href="<c:url value='/employees/index' /> ">一覧に戻る</a></p>
     </c:param>
 </c:import>
