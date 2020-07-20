@@ -1,4 +1,4 @@
-package controllers.toppage;
+package controllers.follows;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Employee;
-import models.Report;
+import models.FollowList;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class TopPageIndexServlet
+ * Servlet implementation class FollowsIndexServlet
  */
-@WebServlet("/index.html")
-public class TopPageIndexServlet extends HttpServlet {
+@WebServlet("/follows/index")
+public class FollowsIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TopPageIndexServlet() {
+    public FollowsIndexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,31 +35,29 @@ public class TopPageIndexServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
-
-        Employee login_employee = (Employee)request.getSession().getAttribute("login_employee");
+        Employee login_employee = (Employee) request.getSession().getAttribute("login_employee");
 
         int page;
-        try {
+        try{
             page = Integer.parseInt(request.getParameter("page"));
         } catch(Exception e) {
             page = 1;
         }
-        List<Report> reports =em.createNamedQuery("getMyAllReports", Report.class)
-                                .setParameter("employee", login_employee)
-                                .setFirstResult(15 * (page -1))
-                                .setMaxResults(15)
-                                .getResultList();
+        List<FollowList> follows = em.createNamedQuery("getMyAllFollows", FollowList.class)
+                                 .setParameter("e_follow", login_employee)
+                                 .setFirstResult(15 * (page - 1))
+                                 .setMaxResults(15)
+                                 .getResultList();
 
-        long reports_count = (long)em.createNamedQuery("getMyReportsCount", Long.class)
-                                     .setParameter("employee", login_employee)
+        long follows_count = (long)em.createNamedQuery("getMyFollowsCount", Long.class)
+                                     .setParameter("e_follow", login_employee)
                                      .getSingleResult();
 
         em.close();
 
-        request.setAttribute("reports", reports);
-        request.setAttribute("reports_count", reports_count);
+        request.setAttribute("follows", follows);
+        request.setAttribute("follows_count", follows_count);
         request.setAttribute("page", page);
-
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
@@ -69,8 +67,9 @@ public class TopPageIndexServlet extends HttpServlet {
             request.getSession().removeAttribute("hasError");
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/follows/index.jsp");
         rd.forward(request, response);
+
     }
 
 }
