@@ -67,6 +67,7 @@
                         </c:choose>
                     </c:otherwise>
                 </c:choose>
+                <p><a href="<c:url value='/follows/create?id=${report.employee.id}' />">この日報の報告者をフォローする</a></p>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>

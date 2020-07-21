@@ -54,7 +54,7 @@
         </c:choose>
         <c:choose>
             <c:when test="${!followedFlag}">
-                <p><a href="<c:url value='/employees/follow?id=${employee.id}' /> ">この従業員をフォローする</a></p>
+                <p><a href="<c:url value='/follows/create?id=${employee.id}' /> ">この従業員をフォローする</a></p>
             </c:when>
             <c:otherwise>
                 <p class="weak">（フォロー済）</p>

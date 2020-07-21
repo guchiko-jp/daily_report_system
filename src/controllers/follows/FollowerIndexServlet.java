@@ -67,7 +67,7 @@ public class FollowerIndexServlet extends HttpServlet {
             request.getSession().removeAttribute("hasError");
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/follows/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/follows/follower_index.jsp");
         rd.forward(request, response);
 
     }
