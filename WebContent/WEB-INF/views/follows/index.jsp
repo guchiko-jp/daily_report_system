@@ -18,11 +18,17 @@
             <tbody>
                 <tr>
                     <th class="follow_name">氏名</th>
+                    <th class="follow_report_index">日報一覧</th>
                     <th class="follow_new_report">最新の日報</th>
                 </tr>
                 <c:forEach var="follow" items="${follows}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td class="follow_name"><c:out value="${follow.e_followed.name}"></c:out></td>
+                        <td class="follow_report_index">
+                            <a href="<c:url value='/follows/show?id=${follow.e_followed.id}' />">
+                                一覧を見る
+                            </a>
+                        </td>
                         <td class="follow_new_report">
                             <a href="<c:url value='/follows/new_report?id=${follow.e_followed.id}' />">
                                 詳細を見る

@@ -13,18 +13,24 @@
                 エラーが発生しました。
             </div>
         </c:if>
-        <h2>フォローリスト</h2>
+        <h2>フォロワーリスト</h2>
         <table id="follower_list">
             <tbody>
                 <c:choose>
                     <c:when test="${login_employee.admin_flag} == true">
                         <tr>
                             <th class="follower_name">氏名</th>
+                            <th class="follow_report_index">日報一覧</th>
                             <th class="follower_show">詳細ページ</th>
                         </tr>
                         <c:forEach var="follower" items="${followers}" varStatus="status">
                             <tr class="row${status.count % 2}">
                                 <td class="follower_name"><c:out value="${follower.e_follow.name}"></c:out></td>
+                                <td class="follow_report_index">
+                                    <a href="<c:url value='/follows/show?id=${follow.e_followed.id}' />">
+                                        一覧を見る
+                                    </a>
+                                </td>
                                 <td class="follower_show">
                                     <a href="<c:url value='/employees/show?id=${follower.e_follow.id}' />">
                                         詳細を見る
@@ -36,10 +42,16 @@
                     <c:otherwise>
                         <tr>
                             <th class="follower_name">氏名</th>
+                            <th class="follow_report_index">日報一覧</th>
                         </tr>
                         <c:forEach var="follower" items="${followers}" varStatus="status">
                             <tr class="row${status.count % 2}">
                                 <td class="follower_name"><c:out value="${follower.e_follow.name}"></c:out></td>
+                                <td class="follow_report_index">
+                                    <a href="<c:url value='/follows/show?id=${follow.e_followed.id}' />">
+                                        一覧を見る
+                                    </a>
+                                </td>
                             </tr>
                         </c:forEach>
                     </c:otherwise>
