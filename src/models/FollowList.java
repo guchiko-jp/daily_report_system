@@ -24,6 +24,14 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getMyFollowsId",
             query = "SELECT f.e_followed FROM FollowList AS f WHERE f.e_follow = :e_follow ORDER BY f.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyAllFollowers",
+            query = "SELECT f FROM FollowList AS f where f.e_followed = :e_followed ORDER BY f.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyFollowersCount",
+            query = "SELECT COUNT(f) FROM FollowList AS f WHERE f.e_followed = :e_followed"
             )
 })
 @Entity
