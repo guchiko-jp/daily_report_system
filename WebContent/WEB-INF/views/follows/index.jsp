@@ -39,7 +39,7 @@
             </tbody>
         </table>
 
-        <p><a href="<c:url value='/follows/follower_index?id=${login_employee.id}' />">フォロワーを見る</a></p>
+        <p><a href="<c:url value='/follows/follower_index?id=${login_employee.id}' />">自分のフォロワーを見る</a></p>
         <div id="pagination">
             （全 ${follows_count} 件） <br />
             <c:forEach var="i" begin="1" end="${((follows_count - 1) /15) + 1}" step="1">
